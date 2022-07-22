@@ -21,7 +21,7 @@ Parameters:
   KeyPairName:
     Type: String
     Description: Name of an existing EC2 key pair (for SSH-access to the worker node instances)
-    Default: prometheus  
+    Default: EKS-key  
   Mappings:
     VpcIpRanges:
       Option1:
