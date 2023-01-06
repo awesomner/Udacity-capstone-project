@@ -17,6 +17,14 @@ jobs:
               --capabilities CAPABILITY_IAM \
               --tags project=eks
 
+  deploy-backend:
+    docker:
+      - image: nginx:stable
+    steps:
+      - checkout
+      - run: nginx
+      - run: nginx -v
+
 workflows:
   deploy-eks-cluster-workflow:
     jobs:
