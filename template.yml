@@ -35,9 +35,9 @@ Mappings:
     # IDs of the "EKS-optimised AMIs" for the worker nodes:
     # https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html
     # IMPORTANT NOTE: Choose AWS EKS compatible ami IDs only
-    EksAmiIds:    
-      eu-central-1:
-        Standard: ami-0ad786360513b6b4d
+  EksAmiIds:    
+    eu-central-1:
+      Standard: ami-0ad786360513b6b4d
     
 Resources:
   #============================================================================#
