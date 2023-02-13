@@ -16,6 +16,40 @@ jobs:
               --stack-name "backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --capabilities CAPABILITY_IAM \
               --tags project=eks
+      - run:
+          name: Add back-end ip to ansible inventory
+          command: |
+            aws ec2 describe-instances \
+              --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
+              --query 'Reservations[*].Instances[*].PublicIpAddress' \
+              --output text >> .circleci/ansible/inventory.txt
+            echo "The public IP of the EC2  instance is:"
+            cat .circleci/ansible/inventory.txt
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/.circleci/ansible/inventory.txt
+
+  configure-infrastructure:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints: 
+            - "ad:29:5d:87:63:85:61:90:b7:8c:d1:60:85:b2:27:84"
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update tar gzip ansible nodejs npm openssh-client
+            pip install awscli
+      - run:
+          name: Configure server
+          command: |
+            cd .circleci/ansible
+            cat inventory.txt
 
   deploy-backend:
     docker:
@@ -29,5 +63,6 @@ workflows:
   deploy-eks-cluster-workflow:
     jobs:
       - deploy-infrastructure
+      - configure-infrastructure
       - deploy-backend:
           requires: [deploy-infrastructure]
