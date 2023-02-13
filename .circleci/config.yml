@@ -63,6 +63,7 @@ workflows:
   deploy-eks-cluster-workflow:
     jobs:
       - deploy-infrastructure
-      - configure-infrastructure
-      - deploy-backend:
+      - configure-infrastructure:
           requires: [deploy-infrastructure]
+      - deploy-backend:
+          requires: [configure-infrastructure]
