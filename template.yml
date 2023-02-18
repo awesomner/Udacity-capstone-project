@@ -254,7 +254,7 @@ Resources:
     Type: AWS::EKS::Cluster
     Properties:
       Name: !Ref AWS::StackName
-      Version: "1.22"
+      Version: "1.24"
       RoleArn: !GetAtt ControlPlaneRole.Arn
       ResourcesVpcConfig:
         SecurityGroupIds:
@@ -405,6 +405,7 @@ Resources:
     Type: AWS::EKS::Nodegroup
     DependsOn: ControlPlane
     Properties:
+      CapacityType: SPOT
       ClusterName: !Sub "${AWS::StackName}"
       NodeRole: !GetAtt WorkerNodesRole.Arn
       ScalingConfig:
