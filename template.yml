@@ -407,10 +407,10 @@ Resources:
     Properties:
       LaunchTemplateName: WorkerNodesLaunchTemplate
       LaunchTemplateData:
-        IamInstanceProfile:
-          Arn: !GetAtt
-            - WorkerNodesInstanceProfile
-            - Arn
+        # IamInstanceProfile:
+        #   Arn: !GetAtt
+        #     - WorkerNodesInstanceProfile
+        #     - Arn
         DisableApiTermination: true
         ImageId: !FindInMap
           - EksAmiIds
