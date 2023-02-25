@@ -9,7 +9,7 @@ jobs:
       - run: yum -y install tar gzip
       - run:
           name: Deploy back-end infrastructure
-          no_output_timeout: 20m
+          no_output_timeout: 60m
           command: |
             aws cloudformation deploy \
               --template-file template.yml \
