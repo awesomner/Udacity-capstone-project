@@ -388,7 +388,7 @@ Resources:
       ClusterName: !Sub "${AWS::StackName}"
       NodeRole: !GetAtt WorkerNodesRole.Arn
       InstanceTypes: !Split [",", !Ref WorkerNodesInstanceType] 
-      LaunchTemplate: !Ref WorkerNodesLaunchTemplate
+      LaunchTemplate: WorkerNodesLaunchTemplate
       ScalingConfig:
         MinSize:
           Ref: NumWorkerNodes
