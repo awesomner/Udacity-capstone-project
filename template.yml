@@ -62,6 +62,7 @@ Resources:
       #   - 0
       #   - !GetAZs ""
       AvailabilityZone: !Select [ 0, !GetAZs '' ]
+      MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
           Value: !Sub "${AWS::StackName}-PublicSubnet1"
@@ -78,6 +79,7 @@ Resources:
       #   - 1
       #   - !GetAZs ""
       AvailabilityZone: !Select [ 1, !GetAZs '' ]
+      MapPublicIpOnLaunch: true
       Tags:
         - Key: Name
           Value: !Sub "${AWS::StackName}-PublicSubnet2"
