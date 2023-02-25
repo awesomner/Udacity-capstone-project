@@ -388,9 +388,7 @@ Resources:
       ClusterName: !Sub "${AWS::StackName}"
       NodeRole: !GetAtt WorkerNodesRole.Arn
       LaunchTemplate:
-          LaunchTemplateSpecification: 
-            LaunchTemplateId: !Ref WorkerNodesLaunchTemplate
-            Version: !GetAtt WorkerNodesLaunchTemplate.LatestVersionNumber
+        Id: !Ref WorkerNodesLaunchTemplate
       ScalingConfig:
         MinSize:
           Ref: NumWorkerNodes
