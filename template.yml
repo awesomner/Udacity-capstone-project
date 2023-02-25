@@ -384,7 +384,7 @@ Resources:
     Type: AWS::EKS::Nodegroup
     DependsOn: ControlPlane
     Properties:
-      CapacityType: SPOT
+      # CapacityType: SPOT
       ClusterName: !Sub "${AWS::StackName}"
       NodeRole: !GetAtt WorkerNodesRole.Arn
       LaunchTemplate:
