@@ -387,8 +387,8 @@ Resources:
       CapacityType: SPOT
       ClusterName: !Sub "${AWS::StackName}"
       NodeRole: !GetAtt WorkerNodesRole.Arn
-      InstanceTypes: !Split [",", !Ref WorkerNodesInstanceType] 
-      LaunchTemplate: WorkerNodesLaunchTemplate
+      # InstanceTypes: !Split [",", !Ref WorkerNodesInstanceType] 
+      LaunchTemplate: !Ref WorkerNodesLaunchTemplate
       ScalingConfig:
         MinSize:
           Ref: NumWorkerNodes
