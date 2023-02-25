@@ -261,7 +261,7 @@ Resources:
           - !Ref ControlPlaneSecurityGroup
         SubnetIds:
           - !Ref PrivateSubnet1
-          - !Ref PublicSubnet1 
+          - !Ref PublicSubnet2
   ControlPlaneRole:
     Type: AWS::IAM::Role
     Properties:
@@ -398,7 +398,7 @@ Resources:
           Ref: NumWorkerNodes
       Subnets:
         - !Ref PrivateSubnet1
-        - !Ref PublicSubnet1
+        - !Ref PublicSubnet2
 
   WorkerNodesLaunchTemplate:
     Type: AWS::EC2::LaunchTemplate
