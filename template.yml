@@ -15,14 +15,9 @@ Parameters:
     Description: Number of worker nodes to create
     Default: 2
   WorkerNodesInstanceType:
-    Type: String
+    Type: CommaDelimitedList
     Description: EC2 instance type for the worker nodes
-    Default: t2.micro
-    AllowedValues:
-      - t2.micro
-      - t2.small
-      - t2.medium
-    Description: Enter t2.micro, t2.small, or t2.medium. Default is t2.micro.
+    Default: ["t2.micro","t2.small","t2.medium"]
   KeyPairName:
     Type: String
     Description: Name of an existing EC2 key pair (for SSH-access to the worker node instances)
