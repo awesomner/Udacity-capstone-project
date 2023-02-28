@@ -25,7 +25,7 @@ Parameters:
 Mappings:
   VpcIpRanges:
     Option1:
-      VPC: 10.100.0.0/16    
+      VPC: 10.100.0.0/16
       PublicSubnet1 : 10.100.0.0/20
       PublicSubnet2: 10.100.16.0/20
       PrivateSubnet1: 10.100.32.0/20
@@ -35,10 +35,10 @@ Mappings:
     # IDs of the "EKS-optimised AMIs" for the worker nodes:
     # https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html
     # IMPORTANT NOTE: Choose AWS EKS compatible ami IDs only
-  EksAmiIds:    
+  EksAmiIds:
     eu-central-1:
       Standard: ami-0ad786360513b6b4d
-    
+
 Resources:
   #============================================================================#
   # VPC
@@ -255,6 +255,8 @@ Resources:
   ControlPlane:
     Type: AWS::EKS::Cluster
     Properties:
+      ResourcesVpcConfig:
+        EndpointPublicAccess: false
       Name: !Ref AWS::StackName
       Version: "1.24"
       RoleArn: !GetAtt ControlPlaneRole.Arn
@@ -275,7 +277,7 @@ Resources:
               Service:
                 - eks.amazonaws.com
             Action: sts:AssumeRole
-      ManagedPolicyArns: 
+      ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
         - arn:aws:iam::aws:policy/AmazonEKSServicePolicy
 
@@ -345,7 +347,7 @@ Resources:
   WorkerNodesIngressFromControlPlaneKubelet:
     Type: AWS::EC2::SecurityGroupIngress
     Properties:
-      Description: Allow incoming kubelet traffic (TCP/10250) from control plane 
+      Description: Allow incoming kubelet traffic (TCP/10250) from control plane
       GroupId: !Ref WorkerNodesSecurityGroup
       SourceSecurityGroupId: !Ref ControlPlaneSecurityGroup
       IpProtocol: tcp
@@ -421,7 +423,7 @@ Resources:
         InstanceType: !Ref WorkerNodesInstanceType
         KeyName: !Ref KeyPairName
         SecurityGroupIds:
-          - !Ref WorkerNodesSecurityGroup 
+          - !Ref WorkerNodesSecurityGroup
 
   WorkerNodesInstanceProfile:
     Type: AWS::IAM::InstanceProfile
