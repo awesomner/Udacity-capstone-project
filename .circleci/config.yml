@@ -12,7 +12,7 @@ jobs:
           no_output_timeout: 60m
           command: |
             aws cloudformation deploy \
-              --template-file template.yml \
+              --template-file template1.yml \
               --stack-name "backend-${CIRCLE_WORKFLOW_ID:0:7}" \
               --capabilities CAPABILITY_IAM \
               --tags project=eks
@@ -36,7 +36,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-          fingerprints: 
+          fingerprints:
             - "ad:29:5d:87:63:85:61:90:b7:8c:d1:60:85:b2:27:84"
       - attach_workspace:
           at: ~/
