@@ -4,9 +4,11 @@ Parameters:
   EKSIAMRoleName:
     Type: String
     Description: The name of the IAM role for the EKS service to assume.
+    Default: eks-role
   EKSClusterName:
     Type: String
     Description: The desired name of your AWS EKS Cluster.
+    Default: eks-cluster
 
   VpcBlock:
     Type: String
