@@ -14,7 +14,7 @@ jobs:
             aws cloudformation deploy \
               --template-file control-plane.yml \
               --stack-name "control-plane-${CIRCLE_WORKFLOW_ID:0:7}" \
-              --capabilities CAPABILITY_IAM \
+              --capabilities CAPABILITY_NAMED_IAM \
               --tags project=eks
       - run:
           name: Deploy eks worker nodes
