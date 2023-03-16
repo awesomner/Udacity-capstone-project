@@ -42,12 +42,12 @@ Parameters:
 
   ClusterName:
     Type: String
-    Default: "eks-cluster"
+    Default: eks-cluster
     Description: The cluster name provided when the cluster was created. If it is incorrect, nodes will not be able to join the cluster.
 
   KeyName:
     Type: "AWS::EC2::KeyPair::KeyName"
-    Default: "EKS-key"
+    Default: EKS-key
     Description: The EC2 Key Pair to allow SSH access to the instances
 
   NodeAutoScalingGroupDesiredCapacity:
@@ -67,12 +67,12 @@ Parameters:
 
   NodeGroupName:
     Type: String
-    Default: "EKS-nodegroup"
+    Default: EKS-nodegroup
     Description: Unique identifier for the Node Group.
 
   NodeImageId:
     Type: String
-    Default: "ami-0ad786360513b6b4d"
+    Default: ami-0ad786360513b6b4d
     Description: (Optional) Specify your own custom image ID. This value overrides any AWS Systems Manager Parameter Store value specified above.
 
   NodeImageIdSSMParam:
