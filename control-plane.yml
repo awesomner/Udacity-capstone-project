@@ -31,7 +31,7 @@ Parameters:
     Default: 192.168.192.0/18
     Description: CidrBlock for private subnet 02 within the VPC
 Metadata:
-  AWS::CloudFormation::Interface:
+  # AWS::CloudFormation::Interface:
   ParameterGroups:
     -
       Label:
@@ -142,9 +142,9 @@ Resources:
     Properties:
       AllocationId: !GetAtt 'NatGatewayEIP1.AllocationId'
       SubnetId: !Ref PublicSubnet01
-    Tags:
-    - Key: Name
-      Value: !Sub '${AWS::StackName}-NatGatewayAZ1'
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-NatGatewayAZ1'
   NatGateway02:
     DependsOn:
     - NatGatewayEIP2
@@ -154,9 +154,9 @@ Resources:
     Properties:
       AllocationId: !GetAtt 'NatGatewayEIP2.AllocationId'
       SubnetId: !Ref PublicSubnet02
-    Tags:
-    - Key: Name
-      Value: !Sub '${AWS::StackName}-NatGatewayAZ2'
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-NatGatewayAZ2'
   NatGatewayEIP1:
     DependsOn:
     - VPCGatewayAttachment
