@@ -37,7 +37,7 @@ Parameters:
 
   ClusterControlPlaneSecurityGroup:
     Type: "AWS::EC2::SecurityGroup::Id"
-    Default: "sg-0bcff1f20c2ec3014"
+    # Default: "sg-0bcff1f20c2ec3014"
     Description: The security group of the cluster control plane.
 
   ClusterName:
@@ -316,12 +316,12 @@ Parameters:
 
   Subnets:
     Type: "List<AWS::EC2::Subnet::Id>"
-    Default: "subnet-0f9628e6a6cfdbd91,subnet-00596da97d94a648d,subnet-07b460c9f6807eba2,subnet-082e11fc100b6c767"
+    # Default: "subnet-0f9628e6a6cfdbd91,subnet-00596da97d94a648d,subnet-07b460c9f6807eba2,subnet-082e11fc100b6c767"
     Description: The subnets where workers can be created.
 
   VpcId:
     Type: "AWS::EC2::VPC::Id"
-    Default: "vpc-0ea2ff7be07b102b1"
+    # Default: "vpc-0ea2ff7be07b102b1"
     Description: The VPC of the worker instances
 
 Conditions:
