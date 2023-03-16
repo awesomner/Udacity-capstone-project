@@ -69,9 +69,13 @@ Resources:
     - Key: Name
       Value: !Sub '${AWS::StackName}-VPC'
   InternetGateway:
-    Type: "AWS::EC2::InternetGateway"
-    VPCGatewayAttachment:
-    Type: "AWS::EC2::VPCGatewayAttachment"
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: !Ref AWS::StackName
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
     Properties:
       InternetGatewayId: !Ref InternetGateway
       VpcId: !Ref VPC
