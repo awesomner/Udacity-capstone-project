@@ -474,7 +474,7 @@ Resources:
         - Key: !Sub kubernetes.io/cluster/${ClusterName}
           PropagateAtLaunch: "true"
           Value: owned
-      VPCZoneIdentifier: !ImportValue SubnetIds
+      VPCZoneIdentifier: !Split [",", !ImportValue SubnetIds]
     UpdatePolicy:
       AutoScalingRollingUpdate:
         MaxBatchSize: "1"
