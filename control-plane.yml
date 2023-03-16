@@ -31,17 +31,17 @@ Parameters:
     Default: 192.168.192.0/18
     Description: CidrBlock for private subnet 02 within the VPC
 Metadata:
-  # AWS::CloudFormation::Interface:
-  ParameterGroups:
-    -
-      Label:
-        default: "Worker Network Configuration"
-      Parameters:
-        - VpcBlock
-        - PublicSubnet01Block
-        - PublicSubnet02Block
-        - PrivateSubnet01Block
-        - PrivateSubnet02Block
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      -
+        Label:
+          default: "Worker Network Configuration"
+        Parameters:
+          - VpcBlock
+          - PublicSubnet01Block
+          - PublicSubnet02Block
+          - PrivateSubnet01Block
+          - PrivateSubnet02Block
 Resources:
   EKSIAMRole:
     Type: 'AWS::IAM::Role'
@@ -252,6 +252,9 @@ Resources:
     Properties:
       GroupDescription: Cluster communication with worker nodes
       VpcId: !Ref VPC
+      Tags:
+        - Key: Name
+          Value: "ControlPlaneSecurityGroup"
   EKSCluster:
     Type: AWS::EKS::Cluster
     Properties:
