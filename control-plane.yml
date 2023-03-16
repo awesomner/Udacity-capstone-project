@@ -152,8 +152,8 @@ Resources:
     - VPCGatewayAttachment
     Type: AWS::EC2::NatGateway
     Properties:
-    AllocationId: !GetAtt 'NatGatewayEIP2.AllocationId'
-    SubnetId: !Ref PublicSubnet02
+      AllocationId: !GetAtt 'NatGatewayEIP2.AllocationId'
+      SubnetId: !Ref PublicSubnet02
     Tags:
     - Key: Name
       Value: !Sub '${AWS::StackName}-NatGatewayAZ2'
