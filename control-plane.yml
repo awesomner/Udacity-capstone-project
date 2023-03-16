@@ -175,10 +175,10 @@ Resources:
       Comment: Public Subnet 01
     Properties:
       AvailabilityZone: !Select [ 0, !GetAZs '' ]
-        CidrBlock:
-          Ref: PublicSubnet01Block
-        VpcId:
-          Ref: VPC
+      CidrBlock:
+        Ref: PublicSubnet01Block
+      VpcId:
+        Ref: VPC
     Tags:
     - Key: Name
       Value: !Sub "${AWS::StackName}-PublicSubnet01"
@@ -188,10 +188,10 @@ Resources:
       Comment: Public Subnet 02
     Properties:
       AvailabilityZone: !Select [ 1, !GetAZs '' ]
-        CidrBlock:
-          Ref: PublicSubnet02Block
-        VpcId:
-          Ref: VPC
+      CidrBlock:
+        Ref: PublicSubnet02Block
+      VpcId:
+        Ref: VPC
     Tags:
     - Key: Name
       Value: !Sub "${AWS::StackName}-PublicSubnet02"
@@ -201,10 +201,10 @@ Resources:
       Comment: Private Subnet 01
     Properties:
       AvailabilityZone: !Select [ 0, !GetAZs '' ]
-        CidrBlock:
-          Ref: PrivateSubnet01Block
-        VpcId:
-          Ref: VPC
+      CidrBlock:
+        Ref: PrivateSubnet01Block
+      VpcId:
+        Ref: VPC
     Tags:
     - Key: Name
       Value: !Sub "${AWS::StackName}-PrivateSubnet01"
@@ -216,10 +216,10 @@ Resources:
       Comment: Private Subnet 02
     Properties:
       AvailabilityZone: !Select [ 1, !GetAZs '' ]
-        CidrBlock:
-          Ref: PrivateSubnet02Block
-        VpcId:
-          Ref: VPC
+      CidrBlock:
+        Ref: PrivateSubnet02Block
+      VpcId:
+        Ref: VPC
     Tags:
     - Key: Name
       Value: !Sub "${AWS::StackName}-PrivateSubnet02"
