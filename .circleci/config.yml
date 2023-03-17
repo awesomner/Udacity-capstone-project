@@ -70,7 +70,7 @@ jobs:
       - run:
           name: AWS EKS cluster creation
           command: |
-            eksctl create cluster --name << parameters.cluster-name >> --region eu-central-1 --zones eu-central-1a,eu-central-1b
+            eksctl create cluster --name << parameters.cluster-name >> --region eu-central-1 --zones eu-central-1a,eu-central-1b --instance-selector-vcpus=1 --instance-selector-memory=2
             eksctl utils describe-stacks --region eu-central-1 --cluster=<< parameters.cluster-name >>
             eksctl get cluster --name=<< parameters.cluster-name >> --region=eu-central-1
       - run:
