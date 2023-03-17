@@ -28,7 +28,7 @@
                    "ports":[
                       {
                          "name":"http-server",
-                         "containerPort":80
+                         "containerPort":8080
                       }
                    ]
                 }
