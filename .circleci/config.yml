@@ -93,10 +93,10 @@ workflows:
           cluster-name: eks-cluster
           requires:
             - create-service
-      # - aws-eks/update-container-image:
-      #     cluster-name: eks-cluster
-      #     container-image-updates: 'nginx-custom=awesomn3r/nginx-custom:latest'
-      #     record: true
-      #     requires:
-      #       - create-deployment
-      #     resource-name: deployment/nginx-custom
+      - aws-eks/update-container-image:
+          cluster-name: eks-cluster
+          container-image-updates: 'nginx-custom=awesomn3r/nginx-custom:latest'
+          record: true
+          requires:
+            - create-deployment
+          resource-name: deployment/nginx-custom
