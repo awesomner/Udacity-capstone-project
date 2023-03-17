@@ -67,7 +67,6 @@ jobs:
             fi
             $SUDO mv eksctl_download/eksctl /usr/local/bin/
             rmdir eksctl_download
-      - install_kubectl
       - run:
           name: AWS EKS cluster creation
           command: |
