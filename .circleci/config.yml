@@ -72,7 +72,7 @@ jobs:
           command: |
             eksctl create cluster --name << parameters.cluster-name >> --region eu-central-1 --zones eu-central-1a,eu-central-1b
             eksctl utils describe-stacks --region eu-central-1 --cluster=<< parameters.cluster-name >>
-            eksctl get cluster --name=-<< parameters.cluster-name >> --region=eu-central-1
+            eksctl get cluster --name=<< parameters.cluster-name >> --region=eu-central-1
       - run:
           name: Install kubectl
           command: |
@@ -84,17 +84,17 @@ workflows:
   deployment:
     jobs:
       - create-small-cluster:
-          cluster-name: capstone
+          cluster-name: eks-cluster
       - create-service:
-          cluster-name: capstone
+          cluster-name: eks-cluster
           requires:
             - create-small-cluster
       - create-deployment:
-          cluster-name: capstone
+          cluster-name: eks-cluster
           requires:
             - create-service
       # - aws-eks/update-container-image:
-      #     cluster-name: capstone
+      #     cluster-name: eks-cluster
       #     container-image-updates: 'nginx-custom=awesomn3r/nginx-custom:latest'
       #     record: true
       #     requires:
