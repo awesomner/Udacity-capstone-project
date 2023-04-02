@@ -24,13 +24,13 @@ workflows:
   deployment:
     jobs:
       - aws-eks/create-cluster:
-          cluster-name: eks-cluster
+          cluster-name: udacity-deploy
       - create-deployment:
-          cluster-name: eks-cluster
+          cluster-name: udacity-deploy
           requires:
             - aws-eks/create-cluster
       - aws-eks/update-container-image:
-          cluster-name: eks-cluster
+          cluster-name: udacity-deploy
           container-image-updates: 'nginx=awesomn3r/nginx-custom'
           post-steps:
             - kubernetes/delete-resource:
@@ -41,6 +41,6 @@ workflows:
             - create-deployment
           resource-name: deployment/nginx-deployment
       - aws-eks/delete-cluster:
-          cluster-name: eks-cluster
+          cluster-name: udacity-deploy
           requires:
             - aws-eks/update-container-image
