@@ -40,7 +40,7 @@ workflows:
           requires:
             - create-deployment
           resource-name: deployment/nginx-custom
-      - aws-eks/delete-cluster:
-          cluster-name: udacity-deploy
-          requires:
-            - aws-eks/update-container-image
+      # - aws-eks/delete-cluster:
+      #     cluster-name: udacity-deploy
+      #     requires:
+      #       - aws-eks/update-container-image
