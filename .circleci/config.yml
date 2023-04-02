@@ -34,12 +34,12 @@ workflows:
           container-image-updates: 'nginx=awesomn3r/nginx-custom'
           post-steps:
             - kubernetes/delete-resource:
-                resource-names: nginx-deployment
+                resource-names: nginx-custom
                 resource-types: deployment
                 wait: true
           requires:
             - create-deployment
-          resource-name: deployment/nginx-deployment
+          resource-name: deployment/nginx-custom
       - aws-eks/delete-cluster:
           cluster-name: udacity-deploy
           requires:
