@@ -31,7 +31,7 @@ workflows:
             - aws-eks/create-cluster
       - aws-eks/update-container-image:
           cluster-name: udacity-deploy
-          container-image-updates: 'nginx=awesomn3r/nginx-custom'
+          container-image-updates: 'nginx-custom=awesomn3r/nginx-custom'
           post-steps:
             - kubernetes/delete-resource:
                 resource-names: nginx-custom
