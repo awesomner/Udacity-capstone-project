@@ -25,6 +25,7 @@ workflows:
     jobs:
       - aws-eks/create-cluster:
           cluster-name: udacity-deploy
+          node-type: t2.small
       - create-deployment:
           cluster-name: udacity-deploy
           requires:
