@@ -1,7 +1,5 @@
 version: '2.1'
-orbs:
-  aws-eks: circleci/aws-eks@2.2.0
-  kubernetes: circleci/kubernetes@1.3
+
 jobs:
   create-deployment:
       docker:
@@ -14,46 +12,8 @@ jobs:
             no_output_timeout: 20m
             command: |
               eksctl create cluster -f eksctl_config.yml
-  create-deployment:
-    docker:
-      - image: 'cimg/python:3.10'
-    parameters:
-      cluster-name:
-        description: |
-          Name of the EKS cluster
-        type: string
-    steps:
-      - checkout
-      - aws-eks/update-kubeconfig-with-authenticator:
-          cluster-name: << parameters.cluster-name >>
-          install-kubectl: true
-      - kubernetes/create-or-update-resource:
-          get-rollout-status: true
-          resource-file-path: deployment.yml
-          resource-name: deployment/nginx-custom
 workflows:
   deployment:
     jobs:
-      - aws-eks/create-cluster:
-          cluster-name: udacity-deploy
-          config-file: eksctl_config.yml
-          # node-type: t2.small
-      - create-deployment:
-          cluster-name: udacity-deploy
-          requires:
-            - aws-eks/create-cluster
-      - aws-eks/update-container-image:
-          cluster-name: udacity-deploy
-          container-image-updates: 'nginx-custom=awesomn3r/nginx-custom'
-          post-steps:
-            - kubernetes/delete-resource:
-                resource-names: nginx-custom
-                resource-types: deployment
-                wait: true
-          requires:
-            - create-deployment
-          resource-name: deployment/nginx-custom
-      # - aws-eks/delete-cluster:
-      #     cluster-name: udacity-deploy
-      #     requires:
-      #       - aws-eks/update-container-image
+      - create-deployment
+      
