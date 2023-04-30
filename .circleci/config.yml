@@ -4,6 +4,17 @@ orbs:
   kubernetes: circleci/kubernetes@1.3
 jobs:
   create-deployment:
+      docker:
+        - image: cimg/aws:2023.04
+      steps:
+        - checkout
+        - run: curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp && sudo mv /tmp/eksctl /usr/local/bin
+        - run:
+            name: Create deployment
+            no_output_timeout: 20m
+            command: |
+              eksctl create cluster -f eksctl_config.yml
+  create-deployment:
     docker:
       - image: 'cimg/python:3.10'
     parameters:
