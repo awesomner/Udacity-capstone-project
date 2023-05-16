@@ -56,7 +56,7 @@ jobs:
   
   deploy-cluster:
     docker:
-      - image: cimg/python:3.11.3 
+      - image: python:3.7-alpine3.11
     parameters:
       cluster-name:
         description: |
@@ -65,11 +65,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install tar and gzip
+          name: Install dependencies
           command: |
-            apt update && apt upgrade -y
-            apt install tar gzip curl -y
-      - install_awscli
+            apk add --update tar gzip ansible nodejs npm openssh-client
+            pip install awscli
       - kubernetes/install
       - aws-eks/update-kubeconfig-with-authenticator:
           cluster-name: << parameters.cluster-name >>
