@@ -67,7 +67,8 @@ jobs:
       - run:
           name: Install tar and gzip
           command: |
-            apk add --update tar gzip curl  
+            apt update && apt upgrade -y
+            apt install tar gzip curl -y
       - install_awscli
       - kubernetes/install
       - aws-eks/update-kubeconfig-with-authenticator:
