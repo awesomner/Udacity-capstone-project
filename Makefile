@@ -8,7 +8,7 @@ install:
 		chmod +x /tmp/hadolint
 
 lint:
-	./hadolint Dockerfile 
+	./tmp/hadolint Dockerfile 
 	pylint --disable=C,R,W1203 run.py
 
 all: install lint test
