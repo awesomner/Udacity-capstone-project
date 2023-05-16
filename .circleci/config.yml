@@ -67,7 +67,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apk add --update tar gzip ansible nodejs npm openssh-client
+            apk add --update tar curl gzip nodejs npm openssh-client
             pip install awscli
       - kubernetes/install
       - aws-eks/update-kubeconfig-with-authenticator:
