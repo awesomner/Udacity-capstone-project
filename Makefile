@@ -1,5 +1,5 @@
 setup:
-	python3 -m venv ~/.devops
+	python3 -m venv ~/.py_env
 
 install:
 	pip install --upgrade pip
@@ -9,5 +9,6 @@ install:
 
 lint:
 	./hadolint Dockerfile 
+	pylint --disable=C,R,W1203 run.py
 
 all: install lint test

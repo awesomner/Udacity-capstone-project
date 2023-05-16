@@ -42,6 +42,25 @@ jobs:
             - ./venv
           key: v1-dependencies-{{ checksum "requirements.txt" }}
 
+  build-docker-image:
+    docker:
+      - image: cimg/go:1.20.4
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.17
+      - run:
+          name: Build docker image
+          command: |
+            docker build --tag=v1 .
+            docker images ls
+            docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+            docker tag v1 awesomn3r/udacity_capstone:v1
+            docker images ls
+            docker push awesomn3r/udacity_capstone:v1
+            docker images ls
+            docker ps
+
   create-cluster:
       docker:
         - image: cimg/aws:2023.04
@@ -76,7 +95,7 @@ jobs:
       - kubernetes/create-or-update-resource:
           get-rollout-status: true
           resource-file-path: deployment.yml
-          resource-name: deployment/nginx-custom
+          resource-name: deployment/udacity_capstone
 
   verify-cluster:
     docker:
@@ -101,9 +120,11 @@ jobs:
 workflows:
   deployment:
     jobs:
-      - run-lint 
-      - create-cluster:
+      - run-lint
+      - build-docker-image:
           requires: [run-lint]
+      - create-cluster:
+          requires: [build-docker-image]
       - deploy-cluster:
           cluster-name: udacity-deploy-cluster
           requires: [create-cluster]            

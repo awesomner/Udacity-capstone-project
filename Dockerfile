@@ -1,9 +1,11 @@
-FROM nginx
- 
-RUN apt-get update && apt-get upgrade -y
+FROM python:3.11
 
-COPY index.html /usr/share/nginx/html
+WORKDIR /app
+COPY . run.py /app/
 
-EXPOSE 8080
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir --trusted-host pypi.python.org -r requirements.txt
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 80
+
+CMD ["python", "run.py"]
