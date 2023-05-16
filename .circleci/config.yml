@@ -29,14 +29,14 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-          # make install
-          # wget -O /hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64 &&\
-          # chmod +x /hadolint
+            make install
+            wget -O /hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64 &&\
+            chmod +x /hadolint
       - run:
           name: run lint
           command: |
             . venv/bin/activate
-          # make lint
+            make lint
       - save_cache:
           paths:
             - ./venv
@@ -55,9 +55,9 @@ jobs:
             docker build --tag=v1 .
             docker images ls
             docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-            docker tag v1 awesomn3r/udacity_capstone:v1
+            docker tag v1 awesomn3r/udacity-capstone:v1
             docker images ls
-            docker push awesomn3r/udacity_capstone:v1
+            docker push awesomn3r/udacity-capstone:v1
             docker images ls
             docker ps
 
@@ -95,7 +95,7 @@ jobs:
       - kubernetes/create-or-update-resource:
           get-rollout-status: true
           resource-file-path: deployment.yml
-          resource-name: deployment/udacity_capstone
+          resource-name: deployment/udacity-capstone
 
   verify-cluster:
     docker:
