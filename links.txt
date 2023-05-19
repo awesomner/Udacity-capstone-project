@@ -1,0 +1,3 @@
+Github - https://github.com/awesomner/Udacity-capstone-project
+Circleci - https://app.circleci.com/pipelines/github/awesomner/Udacity-capstone-project
+DockerHub - https://hub.docker.com/repository/docker/awesomn3r/udacity-capstone/general
